@@ -1,0 +1,78 @@
+{% load static%}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="author" content="Did Coding Limited & James Granger Design">
+  <link rel="canonical" href="{{request.path}}" />
+  <link rel="home" href="% url 'app:home' %" />
+  <meta name="description" content="{% block description %}{% endblock %}">
+  <meta name="keywords" content="{% block keywords %}{% endblock %}">
+
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/man.png' %}">
+  <link rel="apple-touch-icon" type="image/png" href="{% static 'images/man.png' %}">
+
+  <!-- Start CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7.0.5/swiper-bundle.min.css">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% block extend_header%}{% endblock %}
+  <!--End CSS-->
+
+</head>
+
+<body>
+
+  {% include 'add_temp/messages.html' %}
+
+  {% include 'add_temp/nav.html' %}
+
+  {% block content %} {% endblock %}
+
+  {% include 'add_temp/footer.html' %}
+
+  <!-- Start Scripts-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://unpkg.com/swiper@7.0.5/swiper-bundle.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script>
+    var icon = document.getElementById("mode_icon");
+
+    if (localStorage.getItem("theme") == null) {
+      localStorage.setItem("theme", "light");
+    }
+
+    let localData = localStorage.getItem("theme");
+
+    if (localData == "light") {
+      icon.src = "{% static 'images/moon.png' %}";
+      document.body.classList.remove("dark-theme")
+
+    } else if (localData == "dark") {
+      icon.src = "{% static 'images/sun.png' %}";
+      document.body.classList.add("dark-theme");
+    }
+
+    icon.onclick = function () {
+      document.body.classList.toggle("dark-theme");
+      if (document.body.classList.contains("dark-theme")) {
+        icon.src = "{% static 'images/sun.png' %}";
+        localStorage.setItem("theme", "dark");
+
+      } else {
+        icon.src = "{% static 'images/moon.png' %}";
+        localStorage.setItem("theme", "light");
+      }
+    }
+  </script>
+  {% block extend_footer %}{% endblock %}
+  <!--End Scripts -->
+</body>
+
+</html>

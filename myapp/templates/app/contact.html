@@ -1,0 +1,55 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+<!-- Start SEO blocks -->
+{% block title %}{% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- End of SEO Blocks-->
+
+<!-- Start CSS Blocks-->
+{% block extend_header %}{% endblock %}
+<!-- End of CSS Blocks-->
+
+<!-- Start script Blocks-->
+{% block extend_footer %}{% endblock %}
+<!-- End of script Blocks-->
+
+{% block content %}
+
+<!-- Start Content -->
+<section>
+  <div class="innerPageBannerCol">
+    <div class="container">
+      <div class="row g-4 g-md-3  align-items-center">
+        <div class="col-md-6">
+          <div class="bannerContent">
+            <h1 class="xlTitle pb-md-3">Contact us below</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="lightBg">
+    <div class="container">
+        <form id="contactForm" method="POST" action="/contact/">
+          {% csrf_token %}
+            <label for="name">Name</label>
+            {{form.name}}
+
+            <label for="email">Email</label>
+            {{form.email}}
+
+            <label for="message">Message</label>
+            {{form.message}}
+
+            <input class='btn btnPrimary' type="submit" value="Submit">
+        </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+<!--End Content-->

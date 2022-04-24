@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+<!-- Start SEO blocks -->
+{% block title %}{% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- End of SEO Blocks-->
+
+<!-- Start CSS Blocks-->
+{% block extend_header %}{% endblock %}
+<!-- End of CSS Blocks-->
+
+<!-- Start script Blocks-->
+{% block extend_footer %}{% endblock %}
+<!-- End of script Blocks-->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+<section>
+  <div class="innerPageBannerCol">
+    <div class="container">
+      <div class="row g-4 g-md-3  align-items-center">
+        <div class="col-md-6">
+          <div class="bannerContent">
+            <h1 class="xlTitle pb-md-3">{{object.name}}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sectionSpaceSm">
+    <div class="container">
+      {{object.body|safe}}
+    </div>
+  </div>
+</section>
+<!-- ================================
+End Content
+================================= -->
+{%endblock%}
